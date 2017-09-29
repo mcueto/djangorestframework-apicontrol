@@ -111,3 +111,6 @@ ENV/
 /site
 
 # End of https://www.gitignore.io/api/django,python
+
+# OSX
+.DS_Store
