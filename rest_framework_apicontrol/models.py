@@ -1,5 +1,7 @@
 """API Control models."""
 from django.db import models
+from django.db.models.signals import pre_save
+from .utils import generate_code
 
 
 class Responsible(models.Model):
@@ -53,3 +55,11 @@ class OrganizationalUnit(models.Model):
 
     def __str__(self):
         return self.name
+
+
+# Signals
+def generate_app_api_key(sender, instance, **kwargs):
+    instance.api_key = generate_code()
+
+
+pre_save.connect(generate_app_api_key, sender=App)
