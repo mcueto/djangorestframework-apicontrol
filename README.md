@@ -11,7 +11,7 @@ If you want to contribute with this software you can code or donate in http://pa
 ## Permission Usage
 you only has to import the permission and use it in your rest_framework views, or in your settings.py file, as you prefer. e.g:
 
-```
+``` python
 """Contact views."""
 from rest_framework import viewsets
 from rest_framework_apicontrol.permissions import HasApiKeyPermission
