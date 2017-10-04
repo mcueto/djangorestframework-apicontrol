@@ -20,6 +20,7 @@ class App(models.Model):
     """App model: One Instance per Client(business or App) that connects."""
 
     name = models.CharField(max_length=30)
+    logo = models.URLField(blank=True, null=True)
     api_key = models.CharField(max_length=30)
     enabled = models.BooleanField(default=False)
     # owner = models.ForeignKey(settings.AUTH_USER_MODEL)
