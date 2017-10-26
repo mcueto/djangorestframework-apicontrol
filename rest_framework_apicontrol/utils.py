@@ -1,4 +1,9 @@
 from random import randrange
+from logging import getLogger
+from .models import App
+
+logger = getLogger(__name__)
+
 
 CHARSET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 LENGTH = 16
@@ -22,3 +27,14 @@ def generate_code():
             return new_code
         else:
             raise ValueError("Couldn't generate a unique code.")
+
+
+def get_current_app_by_request(request):
+    try:
+        api_key = request.META["HTTP_API_KEY"]
+        app = App.objects.get(api_key=api_key, enabled=True)
+        return app or None
+
+    except Exception as e:
+        logger.error(e)
+        return None
