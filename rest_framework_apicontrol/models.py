@@ -1,4 +1,5 @@
 """API Control models."""
+import uuid
 from django.db import models
 from django.db.models.signals import pre_save
 from .utils import generate_code
@@ -21,7 +22,8 @@ class App(models.Model):
 
     name = models.CharField(max_length=30)
     logo = models.URLField(blank=True, null=True)
-    api_key = models.CharField(max_length=30)
+    # api_key = models.CharField(max_length=30)
+    api_key = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     enabled = models.BooleanField(default=False)
     # owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,11 +58,3 @@ class OrganizationalUnit(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# Signals
-def generate_app_api_key(sender, instance, **kwargs):
-    instance.api_key = generate_code()
-
-
-pre_save.connect(generate_app_api_key, sender=App)
