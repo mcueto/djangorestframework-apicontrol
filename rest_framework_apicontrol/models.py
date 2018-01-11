@@ -1,5 +1,6 @@
 """API Control models."""
 import uuid
+from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 from .utils import generate_code
@@ -22,10 +23,12 @@ class App(models.Model):
 
     name = models.CharField(max_length=30)
     logo = models.URLField(blank=True, null=True)
-    # api_key = models.CharField(max_length=30)
     api_key = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
     enabled = models.BooleanField(default=False)
-    # owner = models.ForeignKey(settings.AUTH_USER_MODEL)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
+
+    metadata = models.JSONField()
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
