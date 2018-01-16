@@ -3,21 +3,28 @@ import uuid
 from django.conf import settings
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+from .mixins import (
+    TrackableModelMixin,
+)
 
 
-class Responsible(models.Model):
+class Responsible(TrackableModelMixin):
     """Responsible: person who manage an app or group."""
 
-    name = models.CharField(max_length=30, blank=True, null=True)
-    email = models.EmailField(unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    name = models.CharField(
+        max_length=30,
+        blank=True,
+        null=True
+    )
+    email = models.EmailField(
+        unique=True
+    )
 
     def __str__(self):
         return self.email
 
 
-class App(models.Model):
+class App(TrackableModelMixin):
     """App model: One Instance per Client(business or App) that connects."""
 
     name = models.CharField(
@@ -39,21 +46,13 @@ class App(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
-
     metadata = JSONField()
-
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True
-    )
 
     def __str__(self):
         return self.name
 
 
-class OrganizationalUnitType(models.Model):
+class OrganizationalUnitType(TrackableModelMixin):
     """Groups type for an App(example: department)."""
 
     name = models.CharField(
@@ -79,7 +78,7 @@ class OrganizationalUnitType(models.Model):
         return self.name
 
 
-class OrganizationalUnit(models.Model):
+class OrganizationalUnit(TrackableModelMixin):
     """Group for an App(example: accounting department)."""
 
     name = models.CharField(
@@ -93,12 +92,6 @@ class OrganizationalUnit(models.Model):
         OrganizationalUnitType,
         related_name="units",
         on_delete=models.CASCADE
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True
-    )
-    updated_at = models.DateTimeField(
-        auto_now=True
     )
     responsibles = models.ManyToManyField(
         Responsible
