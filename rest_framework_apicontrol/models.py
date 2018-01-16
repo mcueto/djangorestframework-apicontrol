@@ -101,8 +101,7 @@ class OrganizationalUnit(models.Model):
         auto_now=True
     )
     responsibles = models.ManyToManyField(
-        Responsible,
-        on_delete=models.CASCADE
+        Responsible
     )
 
     def __str__(self):
