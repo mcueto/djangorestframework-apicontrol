@@ -4,12 +4,12 @@ from setuptools import setup
 setup(
     name='rest_framework_apicontrol',
     packages=['rest_framework_apicontrol'],
-    version='0.3.3',
+    version='0.3.4',
     description='Django Rest Framework Library to control Client Apps over APIs',
     author='Marcelo Cueto',
     author_email='cueto@live.cl',
     url='https://github.com/mcueto/djangorestframework-apicontrol',
-    download_url='https://github.com/mcueto/djangorestframework-auth0/tarball/0.3.3',
+    download_url='https://github.com/mcueto/djangorestframework-auth0/tarball/0.3.4',
     keywords=['api', 'control', 'rest framework', 'django'],
     classifiers=[
         'Environment :: Web Environment',
@@ -24,7 +24,8 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
     ],
     install_requires=[
-        'django>=1.10.0',
-        'djangorestframework>=1.9.0'
+        'django>=2.0.0',
+        'djangorestframework>=3.7.0'
+        'psycopg2>=2.7.3'
     ],
 )

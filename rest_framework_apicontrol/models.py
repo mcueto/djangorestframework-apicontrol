@@ -2,6 +2,7 @@
 import uuid
 from django.conf import settings
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 
 
 class Responsible(models.Model):
@@ -39,7 +40,7 @@ class App(models.Model):
         on_delete=models.CASCADE
     )
 
-    metadata = models.JSONField()
+    metadata = JSONField()
 
     created_at = models.DateTimeField(
         auto_now_add=True
