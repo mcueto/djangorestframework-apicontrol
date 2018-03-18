@@ -19,9 +19,13 @@ class Responsible(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH,
         blank=True,
-    email = models.EmailField(
-        unique=True
     )
+    email = models.EmailField()
+
+    class Meta:
+        unique_together = (
+            ("email", "app"),
+        )
 
     def __str__(self):
         return self.email
