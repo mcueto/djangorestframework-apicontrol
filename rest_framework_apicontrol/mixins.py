@@ -3,6 +3,22 @@ import uuid
 from django.db import models
 
 
+class PerAppModelMixin(models.Model):
+    """
+    PerAppModelMixin.
+
+    It's a model mixin that allows a model to be associated with an app.
+    """
+
+    app = models.ForeignKey(
+        'rest_framework_apicontrol.app',
+        on_delete=models.CASCADE
+    )
+
+    class Meta:
+        abstract = True
+
+
 class TrackableModelMixin(models.Model):
     """
     TrackableModelMixin.
@@ -33,22 +49,6 @@ class UniqueIDModelMixin(models.Model):
     unique_id = models.UUIDField(
         default=uuid.uuid4,
         editable=False
-    )
-
-    class Meta:
-        abstract = True
-
-
-class PerAppModelMixin(models.Model):
-    """
-    PerAppModelMixin.
-
-    It's a model mixin that allows a model to be associated with an app.
-    """
-
-    app = models.ForeignKey(
-        'rest_framework_apicontrol.app',
-        on_delete=models.CASCADE
     )
 
     class Meta:
