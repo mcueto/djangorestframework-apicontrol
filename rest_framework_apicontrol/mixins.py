@@ -3,6 +3,35 @@ import uuid
 from django.db import models
 
 
+class ActiveModelMixin(models.Model):
+    """
+    ActiveModelMixin.
+
+    It's a model mixin to set if a model instance is active or not.
+    """
+
+    active = models.BooleanField(
+        default=False
+    )
+
+    def activate(self, obj, commit=True):
+        """Activate the instance."""
+        obj.enabled = True
+
+        if commit:
+            obj.save()
+
+    def deactivate(self, obj, commit=True):
+        """Deactivate the instance."""
+        obj.enabled = False
+
+        if commit:
+            obj.save()
+
+    class Meta:
+        abstract = True
+
+
 class EnabledModelMixin(models.Model):
     """
     EnabledModelMixin.
