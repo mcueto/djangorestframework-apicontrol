@@ -3,6 +3,35 @@ import uuid
 from django.db import models
 
 
+class EnabledModelMixin(models.Model):
+    """
+    EnabledModelMixin.
+
+    It's a model mixin to set if a model instance is enabled or not.
+    """
+
+    enabled = models.BooleanField(
+        default=False
+    )
+
+    def enable(self, obj, commit=True):
+        """Enable the App instance."""
+        obj.enabled = True
+
+        if commit:
+            obj.save()
+
+    def disable(self, obj, commit=True):
+        """Disable the App instance."""
+        obj.enabled = False
+
+        if commit:
+            obj.save()
+
+    class Meta:
+        abstract = True
+
+
 class PerAppModelMixin(models.Model):
     """
     PerAppModelMixin.
