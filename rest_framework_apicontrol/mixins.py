@@ -44,14 +44,14 @@ class EnabledModelMixin(models.Model):
     )
 
     def enable(self, obj, commit=True):
-        """Enable the App instance."""
+        """Enable the instance."""
         obj.enabled = True
 
         if commit:
             obj.save()
 
     def disable(self, obj, commit=True):
-        """Disable the App instance."""
+        """Disable the instance."""
         obj.enabled = False
 
         if commit:
