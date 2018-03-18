@@ -7,15 +7,15 @@ from .mixins import (
     TrackableModelMixin,
 )
 
+# Fields constants
+NAME_FIELD_MAX_LENGTH = 128
 
 class Responsible(TrackableModelMixin):
     """Responsible: person who manage an app or group."""
 
     name = models.CharField(
-        max_length=30,
+        max_length=NAME_FIELD_MAX_LENGTH,
         blank=True,
-        null=True
-    )
     email = models.EmailField(
         unique=True
     )
@@ -28,7 +28,8 @@ class App(TrackableModelMixin):
     """App model: One Instance per Client(business or App) that connects."""
 
     name = models.CharField(
-        max_length=30
+        max_length=NAME_FIELD_MAX_LENGTH,
+        blank=True
     )
     logo = models.URLField(
         blank=True,
@@ -56,7 +57,7 @@ class OrganizationalUnitType(TrackableModelMixin):
     """Groups type for an App(example: department)."""
 
     name = models.CharField(
-        max_length=30
+        max_length=NAME_FIELD_MAX_LENGTH
     )
     description = models.CharField(
         max_length=30,
@@ -82,7 +83,7 @@ class OrganizationalUnit(TrackableModelMixin):
     """Group for an App(example: accounting department)."""
 
     name = models.CharField(
-        max_length=30
+        max_length=NAME_FIELD_MAX_LENGTH
     )
     description = models.CharField(
         max_length=30,
