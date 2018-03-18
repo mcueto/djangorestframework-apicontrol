@@ -4,13 +4,16 @@ from django.conf import settings
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from .mixins import (
+    PerAppModelMixin,
     TrackableModelMixin,
+    UniqueIDModelMixin,
 )
 
 # Fields constants
 NAME_FIELD_MAX_LENGTH = 128
 
-class Responsible(TrackableModelMixin):
+
+class Responsible(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """Responsible: person who manage an app or group."""
 
     name = models.CharField(
@@ -24,7 +27,7 @@ class Responsible(TrackableModelMixin):
         return self.email
 
 
-class App(TrackableModelMixin):
+class App(TrackableModelMixin, UniqueIDModelMixin):
     """App model: One Instance per Client(business or App) that connects."""
 
     name = models.CharField(
@@ -53,7 +56,7 @@ class App(TrackableModelMixin):
         return self.name
 
 
-class OrganizationalUnitType(TrackableModelMixin):
+class OrganizationalUnitType(PerAppModelMixin, TrackableModelMixin):
     """Groups type for an App(example: department)."""
 
     name = models.CharField(
@@ -61,10 +64,6 @@ class OrganizationalUnitType(TrackableModelMixin):
     )
     description = models.TextField(
         blank=True
-    )
-    app = models.ForeignKey(
-        App,
-        on_delete=models.CASCADE
     )
     parent = models.ForeignKey(
         'self',
