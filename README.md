@@ -2,6 +2,13 @@
 
 This is an App intended to control Clients Apps access over REST APIs.
 
+## NOTICE
+```
+This software is in an early stage of development, please be carefull with the use of it, and remember to backup your database before apply each migration.
+```
+
+***
+
 [*] permissions to control Client Apps in views
 [ ] quota management per Client
 
