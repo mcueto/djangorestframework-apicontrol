@@ -26,11 +26,12 @@ class UniqueIDModelMixin(models.Model):
     """
     UniqueIDModelMixin.
 
-    It's a model mixin to set the model id as a UUIDField with UUID4 algorithm.
+    It's a model mixin to set the model unique_id field as an UUIDField with
+    UUID4 algorithm.
     """
 
-    id = models.UUIDField(
         primary_key=True,
+    unique_id = models.UUIDField(
         default=uuid.uuid4,
         editable=False
     )
