@@ -37,3 +37,19 @@ class UniqueIDModelMixin(models.Model):
 
     class Meta:
         abstract = True
+
+
+class PerAppModelMixin(models.Model):
+    """
+    PerAppModelMixin.
+
+    It's a model mixin that allows a model to be associated with an app.
+    """
+
+    app = models.ForeignKey(
+        'rest_framework_apicontrol.app',
+        on_delete=models.CASCADE
+    )
+
+    class Meta:
+        abstract = True
