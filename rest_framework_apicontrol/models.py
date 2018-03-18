@@ -117,7 +117,7 @@ class OrganizationalUnit(TrackableModelMixin):
         on_delete=models.CASCADE
     )
     responsibles = models.ManyToManyField(
-        Responsible
+        'rest_framework_apicontrol.Responsible'
     )
 
     def __str__(self):
