@@ -111,7 +111,7 @@ class OrganizationalUnit(TrackableModelMixin):
     description = models.TextField(
         blank=True
     )
-    unit_type = models.ForeignKey(
+    organizational_unit_type = models.ForeignKey(
         OrganizationalUnitType,
         related_name="units",
         on_delete=models.CASCADE
