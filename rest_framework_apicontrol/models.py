@@ -59,8 +59,7 @@ class OrganizationalUnitType(TrackableModelMixin):
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH
     )
-    description = models.CharField(
-        max_length=30,
+    description = models.TextField(
         blank=True
     )
     app = models.ForeignKey(
@@ -85,8 +84,7 @@ class OrganizationalUnit(TrackableModelMixin):
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH
     )
-    description = models.CharField(
-        max_length=30,
+    description = models.TextField(
         blank=True
     )
     unit_type = models.ForeignKey(
