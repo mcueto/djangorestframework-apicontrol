@@ -38,6 +38,9 @@ class App(TrackableModelMixin, UniqueIDModelMixin):
         max_length=NAME_FIELD_MAX_LENGTH,
         blank=True
     )
+    description = models.TextField(
+        blank=True
+    )
     logo = models.URLField(
         blank=True,
         null=True
