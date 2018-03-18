@@ -84,7 +84,9 @@ class App(TrackableModelMixin, UniqueIDModelMixin):
         return self.name
 
 
-class OrganizationalUnitType(PerAppModelMixin, TrackableModelMixin):
+class OrganizationalUnitType(PerAppModelMixin,
+                             TrackableModelMixin,
+                             UniqueIDModelMixin):
     """Groups type for an App(example: department)."""
 
     name = models.CharField(
@@ -105,7 +107,7 @@ class OrganizationalUnitType(PerAppModelMixin, TrackableModelMixin):
         return self.name
 
 
-class OrganizationalUnit(TrackableModelMixin):
+class OrganizationalUnit(TrackableModelMixin, UniqueIDModelMixin):
     """Group for an App(example: accounting department)."""
 
     name = models.CharField(
