@@ -11,6 +11,7 @@ from .mixins import (
 )
 
 # Fields constants
+CODE_FIELD_MAX_LENGTH = 128
 NAME_FIELD_MAX_LENGTH = 128
 
 
