@@ -30,7 +30,6 @@ class UniqueIDModelMixin(models.Model):
     UUID4 algorithm.
     """
 
-        primary_key=True,
     unique_id = models.UUIDField(
         default=uuid.uuid4,
         editable=False
