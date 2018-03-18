@@ -56,6 +56,27 @@ class App(TrackableModelMixin, UniqueIDModelMixin):
     )
     metadata = JSONField()
 
+    def enable(self, obj, commit=True):
+        """Enable the App instance."""
+        obj.enabled = True
+
+        if commit:
+            obj.save()
+
+    def disable(self, obj, commit=True):
+        """Disable the App instance."""
+        obj.enabled = False
+
+        if commit:
+            obj.save()
+
+    def reset_api_key(self, obj, commit=True):
+        """Reset the App instance api_key."""
+        obj.api_key = uuid.uuid4
+
+        if commit:
+            obj.save()
+
     def __str__(self):
         return self.name
 
