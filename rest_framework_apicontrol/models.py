@@ -54,7 +54,9 @@ class App(EnabledModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     )
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True
     )
     metadata = JSONField()
 
