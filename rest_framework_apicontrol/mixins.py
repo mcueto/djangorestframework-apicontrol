@@ -1,6 +1,7 @@
 """rest_framework_apicontrol model mixins."""
 import uuid
 from django.db import models
+from django.utils import timezone
 
 
 class ActiveModelMixin(models.Model):
@@ -70,7 +71,8 @@ class PerAppModelMixin(models.Model):
 
     app = models.ForeignKey(
         'rest_framework_apicontrol.app',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        null=True
     )
 
     class Meta:
@@ -86,10 +88,10 @@ class TrackableModelMixin(models.Model):
     """
 
     created_at = models.DateTimeField(
-        auto_now_add=True
+        default=timezone.now
     )
     updated_at = models.DateTimeField(
-        auto_now=True
+        default=timezone.now
     )
 
     class Meta:
