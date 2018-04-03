@@ -59,7 +59,8 @@ class App(EnabledModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         null=True
     )
     metadata = JSONField(
-        default={}
+        default={},
+        blank=True
     )
 
     def reset_api_key(self, obj, commit=True):
