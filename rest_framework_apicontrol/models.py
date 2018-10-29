@@ -59,7 +59,7 @@ class App(EnabledModelMixin, TrackableModelMixin, UniqueIDModelMixin):
         null=True
     )
     metadata = JSONField(
-        default={},
+        default=dict,
         blank=True
     )
 
