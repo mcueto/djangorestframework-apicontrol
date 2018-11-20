@@ -9,6 +9,9 @@ from .mixins import (
     TrackableModelMixin,
     UniqueIDModelMixin,
 )
+from .utils import (
+    generate_random_code,
+)
 
 # Fields constants
 CODE_FIELD_MAX_LENGTH = 128
@@ -121,7 +124,10 @@ class OrganizationalUnit(TrackableModelMixin, UniqueIDModelMixin):
 
 class LoggingGroup(TrackableModelMixin, UniqueIDModelMixin):
     """Group for a Logging history(example: An model instance on a project)."""
-
+    code = models.CharField(
+        max_length=CODE_FIELD_MAX_LENGTH,
+        default=generate_random_code
+    )
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH,
         blank=True
