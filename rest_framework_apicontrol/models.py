@@ -25,6 +25,16 @@ LOGGING_EVENT_ORIGIN_CHOICES = (
     ('rest', 'rest'),
 )
 
+# Model instances status field choices
+MODEL_INSTANCE_STATUS_CHOICES = (
+    ('active', 'active'),
+    ('inactive', 'inactive'),
+    ('archived', 'archived'),
+    ('removed_by_user', 'removed_by_user'),
+    ('removed_by_admin', 'removed_by_admin'),
+    ('removed_automatically', 'removed_automatically'),
+)
+
 
 class Responsible(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """Responsible: person who manage an app or group."""
