@@ -4,7 +4,9 @@ from .models import (
     Responsible,
     App,
     OrganizationalUnitType,
-    OrganizationalUnit
+    OrganizationalUnit,
+    LoggingGroup,
+    LoggingEvent,
 )
 
 
@@ -14,7 +16,14 @@ class AppAdmin(admin.ModelAdmin):
     readonly_fields = ('api_key',)
 
 
+# App
 admin.site.register(Responsible)
 admin.site.register(App, AppAdmin)
+
+# Company hierarchy
 admin.site.register(OrganizationalUnitType)
 admin.site.register(OrganizationalUnit)
+
+# Logging
+admin.site.register(LoggingGroup)
+admin.site.register(LoggingEvent)

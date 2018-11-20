@@ -117,3 +117,37 @@ class OrganizationalUnit(TrackableModelMixin, UniqueIDModelMixin):
 
     def __str__(self):
         return self.name
+
+
+class LoggingGroup(TrackableModelMixin, UniqueIDModelMixin):
+    """Group for a Logging history(example: An model instance on a project)."""
+
+    name = models.CharField(
+        max_length=NAME_FIELD_MAX_LENGTH,
+        blank=True
+    )
+    description = models.TextField(
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class LoggingEvent(TrackableModelMixin, UniqueIDModelMixin):
+    """Specific Logging history event(example: An action taken by a user over a model instance)."""
+
+    name = models.CharField(
+        max_length=NAME_FIELD_MAX_LENGTH,
+        blank=True
+    )
+    description = models.TextField(
+        blank=True
+    )
+    metadata = JSONField(
+        default=dict,
+        blank=True
+    )
+
+    def __str__(self):
+        return self.name
