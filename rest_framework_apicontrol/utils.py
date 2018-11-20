@@ -2,9 +2,13 @@ from random import randrange
 from logging import getLogger
 from . import models
 
+# generate_random_code
 CHARSET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
 DEFAULT_LENGTH = 16
 DEFAULT_MAX_TRIES = 32
+
+# get_default_logging_group
+DEFAULT_LOGGING_GROUP_CODE='DEFAULT'
 
 logger = getLogger(__name__)
 
@@ -36,3 +40,7 @@ def generate_random_code(length=DEFAULT_LENGTH, max_tries=DEFAULT_MAX_TRIES):
             return code
         else:
             raise ValueError("Couldn't generate a unique code.")
+
+
+def get_default_logging_group(code=DEFAULT_LOGGING_GROUP_CODE):
+    return models.LoggingGroup.objects.get(code=code).pk
