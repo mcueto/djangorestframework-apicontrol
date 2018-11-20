@@ -18,6 +18,13 @@ from .utils import (
 CODE_FIELD_MAX_LENGTH = 128
 NAME_FIELD_MAX_LENGTH = 128
 
+# LoggingEvent origin field choices
+LOGGING_EVENT_ORIGIN_CHOICES = (
+    ('auto', 'auto'),
+    ('user', 'user'),
+    ('rest', 'rest'),
+)
+
 
 class Responsible(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """Responsible: person who manage an app or group."""
@@ -160,6 +167,11 @@ class LoggingEvent(TrackableModelMixin, UniqueIDModelMixin):
         default=get_default_logging_group,
         related_name="events",
         on_delete=models.CASCADE
+    )
+    origin = models.CharField(
+        max_length=NAME_FIELD_MAX_LENGTH,
+        choices=LOGGING_EVENT_ORIGIN_CHOICES,
+        default='auto'
     )
 
     def __str__(self):
