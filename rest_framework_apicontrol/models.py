@@ -11,6 +11,7 @@ from .mixins import (
 )
 from .utils import (
     generate_random_code,
+    get_default_logging_group,
 )
 
 # Fields constants
@@ -153,6 +154,12 @@ class LoggingEvent(TrackableModelMixin, UniqueIDModelMixin):
     metadata = JSONField(
         default=dict,
         blank=True
+    )
+    logging_group = models.ForeignKey(
+        LoggingGroup,
+        default=get_default_logging_group,
+        related_name="events",
+        on_delete=models.CASCADE
     )
 
     def __str__(self):
