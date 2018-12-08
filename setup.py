@@ -4,6 +4,7 @@ from setuptools import setup
 setup(
     name='rest_framework_apicontrol',
     packages=['rest_framework_apicontrol'],
+    include_package_data=True,
     version='0.7.1',
     description='Django Rest Framework Library to control Client Apps over APIs',
     author='Marcelo Cueto',
