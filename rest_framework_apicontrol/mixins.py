@@ -30,14 +30,14 @@ class ActiveModelMixin(models.Model):
 
     def activate(self, commit=True):
         """Activate the instance."""
-        self.enabled = True
+        self.active = True
 
         if commit:
             self.save()
 
     def deactivate(self, commit=True):
         """Deactivate the instance."""
-        self.enabled = False
+        self.active = False
 
         if commit:
             self.save()
