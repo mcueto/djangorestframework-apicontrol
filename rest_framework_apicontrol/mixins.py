@@ -3,6 +3,16 @@ import uuid
 from django.db import models
 from django.utils import timezone
 
+# Model instances status field choices
+MODEL_INSTANCE_STATUS_CHOICES = (
+    ('active', 'active'),
+    ('inactive', 'inactive'),
+    ('archived', 'archived'),
+    ('removed_by_user', 'removed_by_user'),
+    ('removed_by_admin', 'removed_by_admin'),
+    ('removed_automatically', 'removed_automatically'),
+)
+
 
 class ActiveModelMixin(models.Model):
     """
