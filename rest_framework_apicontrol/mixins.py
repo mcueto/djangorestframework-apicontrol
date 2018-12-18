@@ -92,36 +92,36 @@ class PerAppModelMixin(models.Model):
         abstract = True
 
 
-class StatusModelMixin(models.Model):
+class InstanceStatusModelMixin(models.Model):
     """
-    StatusModelMixin.
+    InstanceStatusModelMixin.
 
     It's a model mixin to set an status to a Model Instance.
     """
 
-    status = models.CharField(
+    instance_status = models.CharField(
         max_length=STATUS_FIELD_MAX_LENGTH,
         choices=MODEL_INSTANCE_STATUS_CHOICES,
         default='active'
     )
 
-    def activate_status(self, commit=True):
+    def activate_instance(self, commit=True):
         """Activate the instance."""
-        self.status = 'active'
+        self.instance_status = 'active'
 
         if commit:
             self.save()
 
-    def deactivate_status(self, commit=True):
+    def deactivate_instance(self, commit=True):
         """Deactivate the instance."""
-        self.status = 'inactive'
+        self.instance_status = 'inactive'
 
         if commit:
             self.save()
 
-    def archive_status(self, commit=True):
+    def archive_instance(self, commit=True):
         """Archive the instance."""
-        self.status = 'archived'
+        self.instance_status = 'archived'
 
         if commit:
             self.save()
