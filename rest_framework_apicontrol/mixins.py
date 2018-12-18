@@ -3,6 +3,9 @@ import uuid
 from django.db import models
 from django.utils import timezone
 
+# Fields constants
+STATUS_FIELD_MAX_LENGTH = 32
+
 # Model instances status field choices
 MODEL_INSTANCE_STATUS_CHOICES = (
     ('active', 'active'),
@@ -84,6 +87,50 @@ class PerAppModelMixin(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
+
+    class Meta:
+        abstract = True
+
+
+class StatusModelMixin(models.Model):
+    """
+    StatusModelMixin.
+
+    It's a model mixin to set an status to a Model Instance.
+    """
+
+    status = models.CharField(
+        max_length=STATUS_FIELD_MAX_LENGTH,
+        choices=MODEL_INSTANCE_STATUS_CHOICES,
+        default='active'
+    )
+
+    def activate_status(self, obj, commit=True):
+        """Activate the instance."""
+        obj.status = 'active'
+
+        if commit:
+            obj.save()
+
+    def deactivate_status(self, obj, commit=True):
+        """Deactivate the instance."""
+        obj.status = 'inactive'
+
+        if commit:
+            obj.save()
+
+    def archive_status(self, obj, commit=True):
+        """Archive the instance."""
+        obj.status = 'archived'
+
+        if commit:
+            obj.save()
+
+    # The following statuses are not implemented as functions(maybe in the
+    # future if needed):
+    # 'removed_by_user'
+    # 'removed_by_admin'
+    # 'removed_automatically'
 
     class Meta:
         abstract = True
