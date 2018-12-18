@@ -28,19 +28,19 @@ class ActiveModelMixin(models.Model):
         default=False
     )
 
-    def activate(self, obj, commit=True):
+    def activate(self, commit=True):
         """Activate the instance."""
-        obj.enabled = True
+        self.enabled = True
 
         if commit:
-            obj.save()
+            self.save()
 
-    def deactivate(self, obj, commit=True):
+    def deactivate(self, commit=True):
         """Deactivate the instance."""
-        obj.enabled = False
+        self.enabled = False
 
         if commit:
-            obj.save()
+            self.save()
 
     class Meta:
         abstract = True
@@ -57,19 +57,19 @@ class EnabledModelMixin(models.Model):
         default=False
     )
 
-    def enable(self, obj, commit=True):
+    def enable(self, commit=True):
         """Enable the instance."""
-        obj.enabled = True
+        self.enabled = True
 
         if commit:
-            obj.save()
+            self.save()
 
-    def disable(self, obj, commit=True):
+    def disable(self, commit=True):
         """Disable the instance."""
-        obj.enabled = False
+        self.enabled = False
 
         if commit:
-            obj.save()
+            self.save()
 
     class Meta:
         abstract = True
@@ -105,26 +105,26 @@ class StatusModelMixin(models.Model):
         default='active'
     )
 
-    def activate_status(self, obj, commit=True):
+    def activate_status(self, commit=True):
         """Activate the instance."""
-        obj.status = 'active'
+        self.status = 'active'
 
         if commit:
-            obj.save()
+            self.save()
 
-    def deactivate_status(self, obj, commit=True):
+    def deactivate_status(self, commit=True):
         """Deactivate the instance."""
-        obj.status = 'inactive'
+        self.status = 'inactive'
 
         if commit:
-            obj.save()
+            self.save()
 
-    def archive_status(self, obj, commit=True):
+    def archive_status(self, commit=True):
         """Archive the instance."""
-        obj.status = 'archived'
+        self.status = 'archived'
 
         if commit:
-            obj.save()
+            self.save()
 
     # The following statuses are not implemented as functions(maybe in the
     # future if needed):
