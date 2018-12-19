@@ -2,20 +2,12 @@
 
 This is an App intended to control Clients Apps access over REST APIs.
 
-## NOTICE
+## Notice
 ```
-This software is in an early stage of development, please be carefull with the use of it, and remember to backup your database before apply each migration.
+Please be carefull with the use of this package, and remember to backup your database before apply each migration.
 ```
 
-***
-
-[*] permissions to control Client Apps in views
-[ ] quota management per Client
-
-If you want to contribute with this software you can code or donate in http://paypal.me/mcuetodeveloper
-
-
-## Permission Usage
+## Permission Usage (APIKey)
 you only has to import the permission and use it in your rest_framework views, or in your settings.py file, as you prefer. e.g:
 
 ``` python
@@ -40,5 +32,32 @@ class ContactInfoViewSet(viewsets.ModelViewSet):
 
 All the calls to this endpoint **MUST HAVE** a header called **Api-Key** with the value of an App(App model in Django admin site)
 
+## Models
+This app comes with several models & mixins which provide useful common fields & functions, the models it provides are the following:
+
+![models diagram](docs/img/models.png)
+
+To add those models to your app the only you need to do is add `rest_framework_apicontrol` to your project `INSTALLED_APPS` setting & then migrate your app.
+``` python
+INSTALLED_APPS = [
+    # Django default modules
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # Security & multi-app management
+    'rest_framework_apicontrol',
+    # Your project apps
+    '...',
+]
+```
+
+**Notice:** This project's models needs PostgreSQL as database because the use of JSONField in some of it's model fields.
+
+
 ## Donate
+If this project is useful for you, please donate some dollars to help me improve this & others projects.
+
 My Paypal - http://paypal.me/mcuetodeveloper
