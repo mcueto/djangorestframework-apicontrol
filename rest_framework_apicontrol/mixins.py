@@ -16,6 +16,10 @@ MODEL_INSTANCE_STATUS_CHOICES = (
     ('removed_automatically', 'removed_automatically'),
 )
 
+PUBLISHING_STATUS_CHOICES = (
+    ('unpublished', 'unpublished'),
+    ('published', 'published'),
+)
 
 class ActiveModelMixin(models.Model):
     """
@@ -166,6 +170,22 @@ class UniqueIDModelMixin(models.Model):
     unique_id = models.UUIDField(
         default=uuid.uuid4,
         editable=False
+    )
+
+    class Meta:
+        abstract = True
+
+
+class PublishingStatusModelMixin(models.Model):
+    """
+    PublishingStatusModelMixin.
+
+    It's a model mixin to set if a model instance is published or doesn't.
+    """
+
+    publishing_status = models.CharField(
+        max_length=STATUS_FIELD_MAX_LENGTH,
+        choices=PUBLISHING_STATUS_CHOICES,
     )
 
     class Meta:
