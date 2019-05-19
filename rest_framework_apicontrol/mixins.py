@@ -21,6 +21,16 @@ PUBLISHING_STATUS_CHOICES = (
     ('published', 'published'),
 )
 
+BASE_ACCESS_CHOICES = (
+    ('owner', 'owner'),
+    ('group', 'group'),
+    ('public', 'public'),
+)
+
+READ_ACCESS_CHOICES = BASE_ACCESS_CHOICES
+WRITE_ACCESS_CHOICES = BASE_ACCESS_CHOICES
+
+
 class ActiveModelMixin(models.Model):
     """
     ActiveModelMixin.
@@ -187,6 +197,51 @@ class PublishingStatusModelMixin(models.Model):
         max_length=STATUS_FIELD_MAX_LENGTH,
         choices=PUBLISHING_STATUS_CHOICES,
     )
+
+    class Meta:
+        abstract = True
+
+
+class ReadAccessModelMixin(models.Model):
+    """
+    ReadAccessModelMixin.
+
+    It's a model mixin to add read_access field to models.
+    """
+
+    read_access = models.CharField(
+        max_length=STATUS_FIELD_MAX_LENGTH,
+        choices=READ_ACCESS_CHOICES,
+        default='group'
+    )
+
+    class Meta:
+        abstract = True
+
+
+class WriteAccessModelMixin(models.Model):
+    """
+    WriteAccessModelMixin.
+
+    It's a model mixin to add write_access field to models.
+    """
+
+    write_access = models.CharField(
+        max_length=STATUS_FIELD_MAX_LENGTH,
+        choices=WRITE_ACCESS_CHOICES,
+        default='group'
+    )
+
+    class Meta:
+        abstract = True
+
+
+class ReadWriteAccessModelMixin(ReadAccessModelMixin, WriteAccessModelMixin):
+    """
+    ReadWriteAccessModelMixin.
+
+    It's a model mixin to add read_access and write_access field to models
+    """
 
     class Meta:
         abstract = True
