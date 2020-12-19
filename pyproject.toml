@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "djangorestframework-apicontrol"
+name = "rest-framework-apicontrol"
 version = "0.8.1"
 description = "Control Clients Apps access over REST APIs with ApiKeys"
 readme = 'README.md'
