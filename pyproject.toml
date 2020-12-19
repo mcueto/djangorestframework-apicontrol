@@ -23,6 +23,9 @@ classifiers = [
   'Programming Language :: Python :: 3.8',
   'Topic :: Internet :: WWW/HTTP',
 ]
+packages = [
+    { include = "rest_framework_apicontrol" },
+]
 
 
 [tool.poetry.dependencies]
