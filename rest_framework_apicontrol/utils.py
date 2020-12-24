@@ -4,7 +4,7 @@ from . import models
 
 # generate_random_code
 CHARSET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
-DEFAULT_LENGTH = 16
+DEFAULT_LENGTH = 32
 DEFAULT_MAX_TRIES = 32
 
 # get_default_logging_group

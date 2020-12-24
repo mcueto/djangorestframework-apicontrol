@@ -24,10 +24,13 @@ PUBLISHING_STATUS_CHOICES = (
 BASE_ACCESS_CHOICES = (
     ('owner', 'owner'),
     ('group', 'group'),
+)
+
+
+READ_ACCESS_CHOICES = BASE_ACCESS_CHOICES + (
     ('public', 'public'),
 )
 
-READ_ACCESS_CHOICES = BASE_ACCESS_CHOICES
 WRITE_ACCESS_CHOICES = BASE_ACCESS_CHOICES
 
 
@@ -159,7 +162,8 @@ class TrackableModelMixin(models.Model):
     """
 
     created_at = models.DateTimeField(
-        default=timezone.now
+        default=timezone.now,
+        editable=False
     )
     updated_at = models.DateTimeField(
         default=timezone.now

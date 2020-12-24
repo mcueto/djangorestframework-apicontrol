@@ -16,6 +16,11 @@ class AppAdmin(admin.ModelAdmin):
     readonly_fields = ('api_key',)
 
 
+class TrackableModelAdmin(admin.ModelAdmin):
+    """Django admin definition for Trackable models."""
+    readonly_fields = ('created_at', 'updated_at')
+
+
 # App
 admin.site.register(Responsible)
 admin.site.register(App, AppAdmin)

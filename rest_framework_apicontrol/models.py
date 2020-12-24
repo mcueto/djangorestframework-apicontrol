@@ -15,6 +15,7 @@ from .utils import (
 )
 
 # Fields constants
+DEFAULT_APP_CODE = 'DEFAULT'
 CODE_FIELD_MAX_LENGTH = 128
 NAME_FIELD_MAX_LENGTH = 128
 
@@ -47,6 +48,10 @@ class Responsible(PerAppModelMixin, TrackableModelMixin, UniqueIDModelMixin):
 class App(EnabledModelMixin, TrackableModelMixin, UniqueIDModelMixin):
     """App model: One Instance per Client(business or App) that connects."""
 
+    code = models.CharField(
+        max_length=NAME_FIELD_MAX_LENGTH,
+        default=generate_random_code
+    )
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH,
         blank=True
