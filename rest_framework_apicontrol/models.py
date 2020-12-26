@@ -50,7 +50,8 @@ class App(EnabledModelMixin, TrackableModelMixin, UniqueIDModelMixin):
 
     code = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH,
-        default=generate_random_code
+        default=generate_random_code,
+        unique=True
     )
     name = models.CharField(
         max_length=NAME_FIELD_MAX_LENGTH,
