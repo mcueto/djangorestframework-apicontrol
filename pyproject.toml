@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rest-framework-apicontrol"
-version = "0.8.3"
+version = "0.8.4"
 description = "Control Clients Apps access over REST APIs with ApiKeys"
 readme = 'README.md'
 authors = ["Marcelo Cueto <cueto@live.cl>"]
